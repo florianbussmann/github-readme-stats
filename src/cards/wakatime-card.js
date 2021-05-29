@@ -2,9 +2,9 @@ const Card = require("../common/Card");
 const I18n = require("../common/I18n");
 const { getStyles } = require("../getStyles");
 const { wakatimeCardLocales } = require("../translations");
-const { clampValue, getCardColors, FlexLayout } = require("../common/utils");
-const { createProgressNode } = require("../common/createProgressNode");
 const languageColors = require("../common/languageColors.json");
+const { createProgressNode } = require("../common/createProgressNode");
+const { clampValue, getCardColors, flexLayout } = require("../common/utils");
 
 const noCodingActivityNode = ({ color, text }) => {
   return `
@@ -102,6 +102,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     langs_count = languages ? languages.length : 0,
     border_radius,
     border_color,
+    min_seconds = 180
   } = options;
 
   const i18n = new I18n({
@@ -132,6 +133,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const filteredLanguages = languages
     ? languages
       .filter((language) => language.hours || language.minutes)
+      .filter((language) => language.total_seconds >= min_seconds)
       .slice(0, langsCount)
     : [];
 
@@ -193,7 +195,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     }).join("")}
     `;
   } else {
-    finalLayout = FlexLayout({
+    finalLayout = flexLayout({
       items: filteredLanguages.length
         ? filteredLanguages
           .map((language) => {

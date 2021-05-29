@@ -1,8 +1,8 @@
 const Card = require("../common/Card");
-const { clampValue, getCardColors, FlexLayout } = require("../common/utils");
-const { createProgressNode } = require("../common/createProgressNode");
-const { langCardLocales } = require("../translations");
 const I18n = require("../common/I18n");
+const { langCardLocales } = require("../translations");
+const { createProgressNode } = require("../common/createProgressNode");
+const { clampValue, getCardColors, flexLayout } = require("../common/utils");
 
 const createProgressTextNode = ({ width, color, name, progress }) => {
   const paddingRight = 95;
@@ -171,7 +171,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
       }).join("")}
     `;
   } else {
-    finalLayout = FlexLayout({
+    finalLayout = flexLayout({
       items: langs.map((lang) => {
         return createProgressTextNode({
           width: width,

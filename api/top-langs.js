@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
     cache_seconds,
     layout,
     langs_count,
+    include_forks,
     exclude_repo,
     custom_title,
     locale,
@@ -47,7 +48,7 @@ module.exports = async (req, res) => {
     topLangs = await fetchTopLanguages(
       username,
       parseArray(exclude_repo),
-      parseArray(hide),
+      parseBoolean(include_forks),
     );
 
     const cacheSeconds = clampValue(

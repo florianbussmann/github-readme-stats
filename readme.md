@@ -198,6 +198,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `card_width` - Set the card's width manually _(number)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
 - `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
+- `include_forks` - Include stats from forked repositories _(boolean)_
 - `custom_title` - Sets a custom title for the card
 
 > :warning: **Important:**
